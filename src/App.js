@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react'
+import './App.css'
+import Button from './components/Button/Button'
+import Input from './components/Input'
+import List from './components/List'
+import { arr } from './data'
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const [content, setContent] = useState('Нажми на кнопку')
+	// const [time, setTime] = useState(new Date())
+
+	function onClick(type) {
+		console.log('Clicked ' + type)
+		setContent(type)
+	}
+
+	// setInterval(() => {
+	// 	setTime(new Date())
+	// }, 10)
+
+	return (
+		<div>
+			<List arr={arr} />
+			<Input />
+			<Button onTouch={() => onClick('button_1')}>Нажми на меня</Button>
+			<Button onTouch={() => onClick('button_2')}>Не нажимай</Button>
+			<Button onTouch={() => onClick('button_3')}>Клик</Button>
+			<p>{content}</p>
+			{/* <p>Сейчас время: {time}</p> */}
+		</div>
+	)
 }
 
-export default App;
+export default App
