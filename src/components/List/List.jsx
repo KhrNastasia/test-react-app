@@ -2,6 +2,7 @@ import { useState } from 'react'
 import Button from '../Button/Button'
 import Input from '../Input'
 import Label from '../Label/Label'
+import LiElem from '../LiElem/LiElem'
 import classes from './List.module.css'
 
 function List() {
@@ -13,7 +14,7 @@ function List() {
 		<div>
 			<ul>
 				{arr.map(item => {
-					return <li key={item}>{item}</li>
+					return <LiElem item={item} key={item} />
 				})}
 			</ul>
 
@@ -29,15 +30,6 @@ function List() {
 					value={num}
 					onChange={event => setNum(event.target.value)}
 				/>
-				{/* <Input
-					type='submit'
-					value='Отправить'
-					onClick={() => {
-						setArr(arr => [...arr, num])
-						setNum('')
-						console.log(num)
-					}}
-				/> */}
 				<Button
 					onClick={() => {
 						setArr(arr => [...arr, num])
@@ -48,8 +40,6 @@ function List() {
 					Отправить
 				</Button>
 			</form>
-
-			<p>{num}</p>
 		</div>
 	)
 }
