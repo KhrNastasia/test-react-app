@@ -1,10 +1,10 @@
 import classes from './Button.module.css'
 
-export default function Button({ children, onTouch, isActive, ...props }) {
+export default function Button({ children, onClick, isActive, ...props }) {
 	return (
 		<button
 			{...props}
-			onClick={onTouch}
+			onClick={onClick}
 			className={isActive ? classes.active : classes.button}
 		>
 			{children}

@@ -1,8 +1,11 @@
-function Input() {
+function Input({ num, onChange, onClick, ...props }) {
 	return (
-		<div>
-			<input></input>
-		</div>
+		<input
+			type={props.type}
+			value={num}
+			onChange={onChange}
+			onClick={onClick}
+		/>
 	)
 }
 

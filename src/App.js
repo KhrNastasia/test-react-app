@@ -22,21 +22,21 @@ function App() {
 
 			<Button
 				isActive={content === 'button_1'}
-				onTouch={() => onClick('button_1')}
+				onClick={() => onClick('button_1')}
 			>
 				Нажми на меня
 			</Button>
 
 			<Button
 				isActive={content === 'button_2'}
-				onTouch={() => onClick('button_2')}
+				onClick={() => onClick('button_2')}
 			>
 				Не нажимай
 			</Button>
 
 			<Button
 				isActive={content === 'button_3'}
-				onTouch={() => onClick('button_3')}
+				onClick={() => onClick('button_3')}
 			>
 				Клик
 			</Button>
