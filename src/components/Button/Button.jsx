@@ -1,8 +1,12 @@
-import './Button.css'
+import classes from './Button.module.css'
 
-export default function Button({ children, onTouch }) {
+export default function Button({ children, onTouch, isActive, ...props }) {
 	return (
-		<button onClick={onTouch} className='button'>
+		<button
+			{...props}
+			onClick={onTouch}
+			className={isActive ? classes.active : classes.button}
+		>
 			{children}
 		</button>
 	)
