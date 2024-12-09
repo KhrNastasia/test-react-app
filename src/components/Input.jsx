@@ -1,8 +1,8 @@
-function Input({ num, onChange, onClick, ...props }) {
+function Input({ value, onChange, onClick, ...props }) {
 	return (
 		<input
 			type={props.type}
-			value={num}
+			value={value}
 			onChange={onChange}
 			onClick={onClick}
 		/>
