@@ -1,9 +1,5 @@
 .button {
-	color: rgb(0, 0, 0);
-	background-color: rgb(252, 252, 252);
-}
-
-.active {
-	color: red;
-	background-color: aquamarine;
+	margin: 5px;
+	padding: 5px;
+	cursor: pointer;
 }

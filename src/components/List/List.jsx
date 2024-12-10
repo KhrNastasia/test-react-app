@@ -1,8 +1,6 @@
 import { useState } from 'react'
-import Button from '../Button/Button'
-import Input from '../Input'
-import Label from '../Label/Label'
-import LiElem from '../LiElem/LiElem'
+import ListForm from '../ListForm/ListForm'
+import ListItem from '../ListItem/ListItem'
 import classes from './List.module.css'
 
 function List() {
@@ -10,36 +8,28 @@ function List() {
 
 	const [arr, setArr] = useState([])
 
+	function handleChange(event) {
+		setNum(event.target.value)
+	}
+
+	function handleSubmit(e) {
+		e.preventDefault()
+		setArr(arr => [...arr, num])
+		setNum('')
+	}
+
+	function del(id) {
+		console.log('sddfsd')
+	}
+
 	return (
-		<div>
+		<div className={classes.div}>
 			<ul>
 				{arr.map(item => {
-					return <LiElem item={item} key={item} />
+					return <ListItem item={item} key={item} onClick={del} />
 				})}
 			</ul>
-
-			<form
-				className={classes.form}
-				onSubmit={e => {
-					e.preventDefault()
-				}}
-			>
-				<Label htmlFor='num'>Введите число</Label>
-				<Input
-					type='text'
-					value={num}
-					onChange={event => setNum(event.target.value)}
-				/>
-				<Button
-					onClick={() => {
-						setArr(arr => [...arr, num])
-						setNum('')
-						console.log(num)
-					}}
-				>
-					Отправить
-				</Button>
-			</form>
+			<ListForm num={num} onChange={handleChange} onSubmit={handleSubmit} />
 		</div>
 	)
 }
