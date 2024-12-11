@@ -16,7 +16,10 @@ export default function ListItem(props) {
 				<Button
 					className={classes.button}
 					id={props.item}
-					onClick={props.onClick(props.key)}
+					onClick={(e) => {
+						e.stopPropagation();
+						props.onClick(props.key)
+					}}
 				>
 					Удалить
 				</Button>
