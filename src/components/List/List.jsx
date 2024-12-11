@@ -14,19 +14,33 @@ function List() {
 
 	function handleSubmit(e) {
 		e.preventDefault()
-		setArr(arr => [...arr, num])
-		setNum('')
+		if (num) {
+			setArr(arr => [...arr, num])
+			setNum('')
+		}
 	}
 
-	function del(id) {
-		console.log('sddfsd')
+	function del(item) {
+		// setArr(arr=>arr.shift())
+		// const i = arr.indexOf(event.target.id)
+		console.log(item)
+		// arr.splice(i, 1)
+		// setArr(arr => [...arr])
+
+		// setArr(
+		// 	arr.filter(a => {
+		// 		// a.key !== arr.key
+		// 		console.log(a)
+		// 		console.log(arr)
+		// 	})
+		// )
 	}
 
 	return (
 		<div className={classes.div}>
 			<ul>
-				{arr.map(item => {
-					return <ListItem item={item} key={item} onClick={del} />
+				{arr.map((item, key) => {
+					return <ListItem item={item} key={key} onClick={del} />
 				})}
 			</ul>
 			<ListForm num={num} onChange={handleChange} onSubmit={handleSubmit} />

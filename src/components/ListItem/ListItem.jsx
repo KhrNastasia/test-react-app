@@ -5,9 +5,22 @@ export default function ListItem(props) {
 	return (
 		<div className={classes.div}>
 			<li className={classes.li}>{props.item}</li>
-			<Button className={classes.button} id={props.item} onClick={props.del}>
-				Удалить
-			</Button>
+			<div>
+				{/* <Button
+					className={classes.button}
+					id={props.item}
+					onClick={props.onClick}
+				>
+					Редактировать
+				</Button> */}
+				<Button
+					className={classes.button}
+					id={props.item}
+					onClick={props.onClick(props.key)}
+				>
+					Удалить
+				</Button>
+			</div>
 		</div>
 	)
 }
