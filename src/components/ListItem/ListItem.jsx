@@ -2,7 +2,7 @@ import Button from '../Button/Button';
 import classes from './ListItem.module.css';
 
 export default function ListItem(props) {
-  const { item, onRemove } = props;
+  const { item, onRemove, id } = props;
 
   return (
     <div className={classes.div}>
@@ -17,8 +17,8 @@ export default function ListItem(props) {
 		</Button> */}
         <Button
           className={classes.button}
-          id={item}
-          onClick={(e) => onRemove(item)}
+          id={id}
+          onClick={(e) => onRemove(id)}
         >
           Удалить
         </Button>
