@@ -20,20 +20,14 @@ function List() {
     }
   }
 
-  const removeItemHandler = (item) => {
-    //     setArr(arr=> arr.shift())
-    //     const i = arr.indexOf(event.target.id)
-    console.log(item);
-    //     arr.splice(i, 1)
-    //     setArr(arr => [...arr])
+  const removeItemHandler = (index) => {
+    console.log({ index });
 
-    //     setArr(
-    //     	arr.filter(a => {
-    //     		// a.key !== arr.key
-    //     		console.log(a)
-    //     		console.log(arr)
-    //     	})
-    //     )
+    setArr((prev) =>
+      prev.filter((a, i) => {
+        return i !== index;
+      })
+    );
   };
 
   return (
@@ -41,10 +35,16 @@ function List() {
       <ul>
         {arr.map((item, key) => {
           return (
-            <ListItem item={item} key={key} onRemove={removeItemHandler} />
+            <ListItem
+              id={key}
+              item={item}
+              key={key}
+              onRemove={removeItemHandler}
+            />
           );
         })}
       </ul>
+
       <ListForm num={num} onChange={handleChange} onSubmit={handleSubmit} />
     </div>
   );
