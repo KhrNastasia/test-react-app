@@ -20,6 +20,7 @@ function List() {
     }
   }
 
+<<<<<<< Updated upstream
   const removeItemHandler = (index) => {
     console.log({ index });
 
@@ -29,6 +30,24 @@ function List() {
       })
     );
   };
+=======
+	function del(item) {
+		// setArr(arr=>arr.shift())
+		// const i = arr.indexOf(event.target.id)
+		// console.log(item)
+		// arr.splice(i, 1)
+		// setArr(arr => [...arr])
+
+		setArr(
+			arr.filter(a => {
+				// a !== item.key
+				console.log(a)
+				console.log(arr)
+				console.log(item)
+			})
+		)
+	}
+>>>>>>> Stashed changes
 
   return (
     <div className={classes.div}>
