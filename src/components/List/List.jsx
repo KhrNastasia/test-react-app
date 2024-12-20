@@ -1,40 +1,33 @@
-import { useState } from 'react'
 import ListForm from '../ListForm/ListForm'
 import ListItem from '../ListItem/ListItem'
 import classes from './List.module.css'
 
-function List() {
-	const [num, setNum] = useState('')
-
-	const [arr, setArr] = useState([])
-
-	function handleChange(event) {
-		setNum(event.target.value)
-	}
+function List(props) {
+	let arr = props.arr
 
 	function handleSubmit(e) {
 		e.preventDefault()
-		if (num) {
-			setArr(arr => [...arr, num])
-			setNum('')
+		if (props.num) {
+			props.setArr(arr => [...arr, props.num])
+			props.setNum('')
 		}
 	}
 
 	function removeItemHandler(id) {
-		setArr(arr =>
+		props.setArr(arr =>
 			arr.filter((a, i) => {
 				return i !== id
 			})
 		)
 	}
 
-	function editItemHandler(id) {
-		console.log({ id })
-	}
-
 	return (
 		<div className={classes.div}>
-			<ListForm num={num} onChange={handleChange} onSubmit={handleSubmit} />
+			<ListForm
+				num={props.num}
+				onChange={props.onChange}
+				onSubmit={handleSubmit}
+			/>
 			<ul>
 				{arr.map((item, key) => {
 					return (
@@ -42,8 +35,10 @@ function List() {
 							id={key}
 							item={item}
 							key={key}
+							state={props.state}
+							setState={props.setState}
 							onRemove={removeItemHandler}
-							onEdit={editItemHandler}
+							onEdit={props.onEdit}
 						/>
 					)
 				})}
