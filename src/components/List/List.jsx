@@ -3,15 +3,21 @@ import ListItem from '../ListItem/ListItem'
 import classes from './List.module.css'
 
 function List(props) {
+	// const [num, setNum] = useState('')
+
 	let arr = props.arr
 
-	function handleSubmit(e) {
-		e.preventDefault()
-		if (props.num) {
-			props.setArr(arr => [...arr, props.num])
-			props.setNum('')
-		}
-	}
+	// function handleChange(event) {
+	// 	setNum(event.target.value)
+	// }
+
+	// function handleSubmit(e) {
+	// 	e.preventDefault()
+	// 	if (props.num) {
+	// 		props.setArr(arr => [...arr, props.num])
+	// 		props.setNum('')
+	// 	}
+	// }
 
 	function removeItemHandler(id) {
 		props.setArr(arr =>
@@ -26,7 +32,7 @@ function List(props) {
 			<ListForm
 				num={props.num}
 				onChange={props.onChange}
-				onSubmit={handleSubmit}
+				onSubmit={props.onSubmit}
 			/>
 			<ul>
 				{arr.map((item, key) => {

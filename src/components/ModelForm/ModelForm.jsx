@@ -1,16 +1,26 @@
 // import Modal from 'react-modal'
+import { useState } from 'react'
 import Button from '../Button/Button'
 import Input from '../Input/Input'
 import classes from './ModelForm.module.css'
 
 export default function ModelForm(props) {
+	const [value, setValue] = useState(props.arr[props.id])
+
+	console.log(props)
+	console.log(props.arr[props.id])
+	console.log(value)
+
 	let state = props.state
+
+	function handleChange(event) {
+		setValue(event.target.value)
+	}
 
 	const switchModelForm = () => {
 		props.setState(!state)
+		setValue()
 	}
-
-	const value = props.arr[props.id]
 
 	const modalContent = (
 		<div className={state ? classes.back : classes.displ}>
@@ -24,7 +34,8 @@ export default function ModelForm(props) {
 				<Input
 					className={classes.input}
 					value={value}
-					onChange={props.onChange}
+					onChange={handleChange}
+					onSubmit={props.onSubmit}
 				/>
 				<Button className={classes.button}>Редактировать</Button>
 			</div>
