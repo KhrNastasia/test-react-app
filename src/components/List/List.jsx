@@ -3,21 +3,7 @@ import ListItem from '../ListItem/ListItem'
 import classes from './List.module.css'
 
 function List(props) {
-	// const [num, setNum] = useState('')
-
 	let arr = props.arr
-
-	// function handleChange(event) {
-	// 	setNum(event.target.value)
-	// }
-
-	// function handleSubmit(e) {
-	// 	e.preventDefault()
-	// 	if (props.num) {
-	// 		props.setArr(arr => [...arr, props.num])
-	// 		props.setNum('')
-	// 	}
-	// }
 
 	function removeItemHandler(id) {
 		props.setArr(arr =>

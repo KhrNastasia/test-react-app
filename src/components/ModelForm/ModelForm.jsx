@@ -5,25 +5,35 @@ import Input from '../Input/Input'
 import classes from './ModelForm.module.css'
 
 export default function ModelForm(props) {
-	const [value, setValue] = useState(props.arr[props.id])
-
-	console.log(props)
-	console.log(props.arr[props.id])
-	console.log(value)
-
-	let state = props.state
+	const { element, id, arr, state, setState, onSubmit, onEdit, setArr } = props
+	const [value, setValue] = useState(element)
 
 	function handleChange(event) {
 		setValue(event.target.value)
 	}
 
 	const switchModelForm = () => {
-		props.setState(!state)
-		setValue()
+		setState(!state)
+		onEdit(element)
+		setValue('')
+	}
+
+	function onUpdate(id, value) {
+		setArr(
+			arr.map((el, key) => {
+				if (key === id) {
+					return value
+				} else return el
+			})
+		)
+		console.log(arr)
+		console.log(id)
+		console.log(value)
+		setState(!state)
 	}
 
 	const modalContent = (
-		<div className={state ? classes.back : classes.displ}>
+		<div className={classes.back}>
 			<div className={classes.model}>
 				<div className={classes.head}>
 					<h2>Отредактируйте элемент</h2>
@@ -33,11 +43,17 @@ export default function ModelForm(props) {
 				</div>
 				<Input
 					className={classes.input}
-					value={value}
+					value={value || ''}
 					onChange={handleChange}
-					onSubmit={props.onSubmit}
+					onSubmit={onSubmit}
 				/>
-				<Button className={classes.button}>Редактировать</Button>
+				<Button
+					id={id}
+					className={classes.button}
+					onClick={e => onUpdate(id, value)}
+				>
+					Редактировать
+				</Button>
 			</div>
 		</div>
 	)

@@ -6,7 +6,7 @@ import List from './components/List/List'
 import ModelForm from './components/ModelForm/ModelForm'
 
 function App() {
-	const [state, setState] = useState(false)
+	const [modalOpened, setModalOpened] = useState(false)
 
 	const [id, setId] = useState('')
 
@@ -35,8 +35,8 @@ function App() {
 			<Header />
 			<div className='content'>
 				<List
-					state={state}
-					setState={setState}
+					state={modalOpened}
+					setState={setModalOpened}
 					onEdit={editItemHandler}
 					onChange={handleChange}
 					num={num}
@@ -45,17 +45,20 @@ function App() {
 					setArr={setArr}
 					onSubmit={handleSubmit}
 				/>
-				<ModelForm
-					state={state}
-					setState={setState}
-					id={id}
-					// onChange={handleChange}
-					num={num}
-					setNum={setNum}
-					arr={arr}
-					setArr={setArr}
-					onSubmit={handleSubmit}
-				/>
+				{modalOpened && (
+					<ModelForm
+						state={modalOpened}
+						setState={setModalOpened}
+						num={num}
+						setNum={setNum}
+						id={id}
+						arr={arr}
+						element={arr[id]}
+						setArr={setArr}
+						onSubmit={handleSubmit}
+						onEdit={editItemHandler}
+					/>
+				)}
 			</div>
 			<Footer />
 		</div>
