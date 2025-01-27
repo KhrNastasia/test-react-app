@@ -1,16 +1,23 @@
+import { DndContext } from '@dnd-kit/core'
+import { SortableContext, arrayMove } from '@dnd-kit/sortable'
+import { React } from 'react'
 import ListForm from '../ListForm/ListForm'
-import ListItem from '../ListItem/ListItem'
+import SortableItem from '../SortableItem/SortableItem'
 import classes from './List.module.css'
 
 function List(props) {
-	let arr = props.arr
+	const { arr, state, setArr, removeItemHandler, setState, onEdit } = props
 
-	function removeItemHandler(id) {
-		props.setArr(arr =>
-			arr.filter((a, i) => {
-				return i !== id
+	const reorderList = e => {
+		if (!e.over) return
+
+		if (e.active.id !== e.over.id) {
+			setArr(arr => {
+				const oldIdx = arr.indexOf(e.active.id.toString())
+				const newIdx = arr.indexOf(e.over.id.toString())
+				return arrayMove(arr, oldIdx, newIdx)
 			})
-		)
+		}
 	}
 
 	return (
@@ -20,21 +27,27 @@ function List(props) {
 				onChange={props.onChange}
 				onSubmit={props.onSubmit}
 			/>
-			<ul>
-				{arr.map((item, key) => {
-					return (
-						<ListItem
-							id={key}
-							item={item}
-							key={key}
-							state={props.state}
-							setState={props.setState}
-							onRemove={removeItemHandler}
-							onEdit={props.onEdit}
-						/>
-					)
-				})}
-			</ul>
+			<DndContext onDragEnd={reorderList}>
+				<SortableContext items={arr}>
+					<ul>
+						{arr.map((item, key) => {
+							return (
+								<SortableItem
+									id={key}
+									item={item}
+									key={key}
+									state={state}
+									setState={setState}
+									onRemove={removeItemHandler}
+									onEdit={onEdit}
+								>
+									{item}
+								</SortableItem>
+							)
+						})}
+					</ul>
+				</SortableContext>
+			</DndContext>
 		</div>
 	)
 }

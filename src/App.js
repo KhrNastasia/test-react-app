@@ -7,11 +7,8 @@ import ModelForm from './components/ModelForm/ModelForm'
 
 function App() {
 	const [modalOpened, setModalOpened] = useState(false)
-
 	const [id, setId] = useState('')
-
 	const [arr, setArr] = useState([])
-
 	const [num, setNum] = useState('')
 
 	function handleSubmit(e) {
