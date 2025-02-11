@@ -6,7 +6,7 @@ import SortableItem from '../SortableItem/SortableItem'
 import classes from './List.module.css'
 
 function List(props) {
-	const { arr, state, setArr, removeItemHandler, setState, onEdit } = props
+	const { arr, state, setArr, onRemove, setState, onEdit } = props
 
 	const reorderList = e => {
 		if (!e.over) return
@@ -38,7 +38,7 @@ function List(props) {
 									key={key}
 									state={state}
 									setState={setState}
-									onRemove={removeItemHandler}
+									onRemove={onRemove}
 									onEdit={onEdit}
 								>
 									{item}

@@ -1,15 +1,34 @@
-import { React, useState } from 'react'
+import { React, useState, useEffect } from 'react'
 import './App.css'
 import Footer from './components/Footer/Footer'
 import Header from './components/Header/Header'
 import List from './components/List/List'
 import ModelForm from './components/ModelForm/ModelForm'
 
+
 function App() {
 	const [modalOpened, setModalOpened] = useState(false)
 	const [id, setId] = useState('')
 	const [arr, setArr] = useState([])
 	const [num, setNum] = useState('')
+	const [state, setState] = useState(null);
+
+	const callBackendAPI = async () => {
+		const response = await fetch('/express_backend');
+		const body = await response.json();
+	
+		if (response.status !== 200) {
+		  throw Error(body.message)
+		}
+		return body;
+	  };
+	  
+	  // получение GET маршрута с сервера Express, который соответствует GET из server.js 
+	  useEffect(() => {
+		callBackendAPI()
+		.then(res => setState(res.express))
+		.catch(err => console.log(err));
+	  }, [])
 
 	function handleSubmit(e) {
 		e.preventDefault()
@@ -17,6 +36,14 @@ function App() {
 			setArr(arr => [...arr, num])
 			setNum('')
 		}
+	}
+
+	function removeItemHandler(id) {
+		setArr(arr =>
+			arr.filter((a, i) => {
+				return i !== id
+			})
+		)
 	}
 
 	function editItemHandler(id) {
@@ -41,6 +68,7 @@ function App() {
 					arr={arr}
 					setArr={setArr}
 					onSubmit={handleSubmit}
+					onRemove={removeItemHandler}
 				/>
 				{modalOpened && (
 					<ModelForm
@@ -59,6 +87,7 @@ function App() {
 			</div>
 			<Footer />
 		</div>
+
 	)
 }
 

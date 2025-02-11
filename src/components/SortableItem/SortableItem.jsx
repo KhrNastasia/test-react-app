@@ -10,19 +10,20 @@ const SortableItem = props => {
 		useSortable({ id: props.children })
 
 	return (
-		<div
-			ref={setNodeRef}
-			{...attributes}
-			{...listeners}
-			// className={styles.item}
-			className={classes.div}
-			style={{
-				transform: CSS.Transform.toString(transform),
-				transition: transition,
-				style,
-			}}
-		>
-			<li className={classes.li}>{item}</li>
+		<div className={classes.div}>
+			<li
+				ref={setNodeRef}
+				{...attributes}
+				{...listeners}
+				style={{
+					transform: CSS.Transform.toString(transform),
+					transition: transition,
+					style,
+				}}
+				className={classes.li}
+			>
+				{item}
+			</li>
 			<div>
 				<Button
 					className={classes.button}
